@@ -159,7 +159,13 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botonContinuarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.dispose();
+        int confirmacion= JOptionPane.showConfirmDialog(this, "¿ESTAS SEGURO QUE QUIERES SALIR?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+            if(confirmacion == JOptionPane.YES_OPTION){
+                this.dispose();
+            }else{
+                JOptionPane.showConfirmDialog(this, "TE HAZ QUEDADO!");
+            }
+                
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void menuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAcercaDeActionPerformed

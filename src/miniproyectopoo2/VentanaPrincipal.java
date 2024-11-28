@@ -1,7 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+
 package miniproyectopoo2;
 
 import java.awt.BorderLayout;
@@ -14,45 +12,45 @@ import javax.swing.table.DefaultTableModel;
  * @author luisc
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    private VentanaPrincipal ventanaPrincipal;
-    private DefaultTableModel modelo;
+
     
+    private DefaultTableModel modelo;
+
     public VentanaPrincipal() {
         initComponents();
-        
+        modelo= getModeloTabla();        
     }
     
-    //OBTENER TABLA
-    public JTable getTabla(){
-        return jTable1;
-    }
-    
-    //metodo para obtener modelo y tabla.
-    public DefaultTableModel getmodeloTabla(){
+    //Metodo para obtener el modelo de la tabla
+    public DefaultTableModel getModeloTabla() {
         return (DefaultTableModel) getTabla().getModel();
     }
-    
+
+    //OBTENER TABLA
+    public JTable getTabla() {
+        return jTable1;
+    }
+
+    //metodo para obtener modelo y tabla.
     //METODO PARA PANEL USUARIO, PARA MANEJAR MEJOR UNA SOLA INSTANCIA EN CADA CASO.
-    public void configPanelUsuario(VentanaInicio ventanaInicio){
+    public void configPanelUsuario(VentanaInicio ventanaInicio) {
         PanelUsuario panelUsuario = new PanelUsuario();
         panelUsuario.setVentanaPrincipal(this);
         panelUsuario.setVentanaInicio(ventanaInicio);
         cambiarPanelContenedor2(panelUsuario);
     }
-    
+
     //METODO PARA PANEL ADMIN, PARA MANEJAR UNA SOLA INSTANCIA EN CADA CASO.
-    public void configPanelAdmin(VentanaInicio ventanaInicio){
+    public void configPanelAdmin(VentanaInicio ventanaInicio) {
         panelAdmin panelAdmin = new panelAdmin();
         panelAdmin.setVentanaPrincipal(this);
         panelAdmin.setVentanaInicio(ventanaInicio);
         cambiarPanelContenedor2(panelAdmin);
     }
-    
-    public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal){
-        this.ventanaPrincipal = ventanaPrincipal;
-    }
-            
-     //METODO PARA CAMBIAR EL CONTENIDO DEL SEGUNDO PANEL
+
+  
+
+    //METODO PARA CAMBIAR EL CONTENIDO DEL SEGUNDO PANEL
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
         panelContenedor2.removeAll();
         panelContenedor2.setLayout(new BorderLayout());
@@ -62,6 +60,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nuevoPanel.setFocusable(true);
 
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -102,7 +101,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(panelContenedor2Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelContenedor1Layout = new javax.swing.GroupLayout(panelContenedor1);
@@ -117,7 +116,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(panelContenedor1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelContenedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelContenedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -6,6 +6,7 @@ package miniproyectopoo2;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,7 +23,7 @@ public class panelAdmin extends javax.swing.JPanel {
     public panelAdmin() {
         initComponents();
     }
-
+   
     //Metodos para pasar las instancias a los panales.
     public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
@@ -34,44 +35,48 @@ public class panelAdmin extends javax.swing.JPanel {
 
     
     //GETTERS FORMULARIO
-    public String getCampoCodigoProducto(){
+    public String getCampoCodigoProducto() {
         return campoCodigoProducto.getText();
-    }
-    public String getCampoNombreProducto(){
-        return campoNombreProducto.getText();
-    }
-    public String getCampoPrecioProducto(){
-        return campoPrecioProducto.getText();
-    }
-    public String getCampoCategoriaProducto(){
-        return campoCodigoProducto.getText();
-    }
-    public String getCampoImagenProducto(){
-        return campoImagenProducto.getText();
     }
 
+    public String getCampoNombreProducto() {
+        return campoNombreProducto.getText();
+    }
+
+    public String getCampoPrecioProducto() {
+        return campoPrecioProducto.getText();
+    }
+
+    public String getCampoCategoriaProducto() {
+        return campoCodigoProducto.getText();
+    }
+
+    public String getCampoImagenProducto() {
+        return campoImagenProducto.getText();
+    }
     
-    
+
     //SETTERS FORMULARIO
-    public void setCampoCodigoProducto(){
+    public void setCampoCodigoProducto() {
         this.campoCodigoProducto = campoCodigoProducto;
     }
-    public void setCampoNombreProducto(){
+
+    public void setCampoNombreProducto() {
         this.campoNombreProducto = campoNombreProducto;
     }
-    public void setCampoPrecioProducto(){
-        this.campoPrecioProducto=campoPrecioProducto;
+
+    public void setCampoPrecioProducto() {
+        this.campoPrecioProducto = campoPrecioProducto;
     }
-    public void setCampoCategoriaProducto(){
-        this.campoCodigoProducto=campoCodigoProducto;
+
+    public void setCampoCategoriaProducto() {
+        this.campoCodigoProducto = campoCodigoProducto;
     }
-    
-    public void setCampoImagenProducto(String texto){
+
+    public void setCampoImagenProducto(String texto) {
         this.campoImagenProducto = campoImagenProducto;
-    }    
-    
-    
-    
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -118,6 +123,11 @@ public class panelAdmin extends javax.swing.JPanel {
         etiquetaTitulo6.setText("IMAGEN PRODUCTO:");
 
         botonGuardar.setText("GUARDAR");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
         botonEditar.setText("EDITAR");
 
@@ -193,7 +203,7 @@ public class panelAdmin extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaTitulo6)
                     .addComponent(campoImagenProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,9 +230,37 @@ public class panelAdmin extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "TE HAZ QUEDADO");
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        DefaultTableModel modelo = ventanaPrincipal.getModeloTabla();
+        String codigoProducto = getCampoCodigoProducto();
+        String nombreProducto = getCampoNombreProducto();
+        String precioProducto = getCampoPrecioProducto();
+        String categoriaProducto = getCampoCategoriaProducto();
+        String imagenProducto = getCampoImagenProducto();
+        
+        if(codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty() || imagenProducto.isEmpty()){
+            JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS DEBEN DE ESTAR COMPLETOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Object nuevaFila[] = {codigoProducto,nombreProducto,precioProducto,categoriaProducto,imagenProducto};
+            modelo.addRow(nuevaFila);
+            
+            campoCodigoProducto.setText("");
+            campoNombreProducto.setText("");
+            campoPrecioProducto.setText("");
+            campoCategoriaProducto.setText("");
+            campoImagenProducto.setText("");
+                    
+        }
+           
+
+
+
+
+
+
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
