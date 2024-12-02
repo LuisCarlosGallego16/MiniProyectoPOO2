@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productos>
+    <producto>
+        <codigo>asdas</codigo>
+        <nombre>sadasd</nombre>
+        <precio>asdasd</precio>
+        <categoria>asdassdad</categoria>
+        <imagen/>
+    </producto>
+    <producto>
+        <codigo>sddsd</codigo>
+        <nombre>ds</nombre>
+        <precio>sdsd</precio>
+        <categoria>sddsdsdssds</categoria>
+        <imagen/>
+    </producto>
+</productos>
