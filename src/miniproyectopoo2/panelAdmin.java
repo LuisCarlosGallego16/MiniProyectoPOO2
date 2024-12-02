@@ -5,25 +5,24 @@
 package miniproyectopoo2;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author luisc
  */
-public class panelAdmin extends javax.swing.JPanel {
+public class PanelAdmin extends javax.swing.JPanel {
 
     /**
-     * Creates new form panelAdmin
+     * Creates new form PanelAdmin
      */
     private VentanaPrincipal ventanaPrincipal;
     private VentanaInicio ventanaInicio;
 
-    public panelAdmin() {
+    public PanelAdmin() {
         initComponents();
     }
-   
+
     //Metodos para pasar las instancias a los panales.
     public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
@@ -33,7 +32,6 @@ public class panelAdmin extends javax.swing.JPanel {
         this.ventanaInicio = ventanaInicio;
     }
 
-    
     //GETTERS FORMULARIO
     public String getCampoCodigoProducto() {
         return campoCodigoProducto.getText();
@@ -54,28 +52,30 @@ public class panelAdmin extends javax.swing.JPanel {
     public String getCampoImagenProducto() {
         return campoImagenProducto.getText();
     }
-    
 
     //SETTERS FORMULARIO
-    public void setCampoCodigoProducto() {
-        this.campoCodigoProducto = campoCodigoProducto;
+    public void setCampoCodigoProducto(String texto) {
+        this.campoCodigoProducto.setText(texto);
+
     }
 
-    public void setCampoNombreProducto() {
-        this.campoNombreProducto = campoNombreProducto;
+    public void setCampoNombreProducto(String texto) {
+        this.campoNombreProducto.setText(texto);
     }
 
-    public void setCampoPrecioProducto() {
-        this.campoPrecioProducto = campoPrecioProducto;
+    public void setCampoPrecioProducto(String texto) {
+        this.campoPrecioProducto.setText(texto);
     }
 
-    public void setCampoCategoriaProducto() {
-        this.campoCodigoProducto = campoCodigoProducto;
+    public void setCampoCategoriaProducto(String texto) {
+        this.campoCategoriaProducto.setText(texto);
     }
 
     public void setCampoImagenProducto(String texto) {
-        this.campoImagenProducto = campoImagenProducto;
+        this.campoImagenProducto.setText(texto);
     }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -130,8 +130,18 @@ public class panelAdmin extends javax.swing.JPanel {
         });
 
         botonEditar.setText("EDITAR");
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setText("ELIMINAR");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         campoCodigoProducto.setToolTipText("");
 
@@ -218,7 +228,6 @@ public class panelAdmin extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTÁS SEGURO DE SALIR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
-
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (ventanaPrincipal != null) {
                 ventanaPrincipal.dispose();
@@ -226,7 +235,6 @@ public class panelAdmin extends javax.swing.JPanel {
             if (ventanaInicio != null) {
                 ventanaInicio.setVisible(true);
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "TE HAZ QUEDADO");
         }
@@ -239,28 +247,70 @@ public class panelAdmin extends javax.swing.JPanel {
         String precioProducto = getCampoPrecioProducto();
         String categoriaProducto = getCampoCategoriaProducto();
         String imagenProducto = getCampoImagenProducto();
-        
-        if(codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty() || imagenProducto.isEmpty()){
+
+        if (codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty() || imagenProducto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS DEBEN DE ESTAR COMPLETOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-        }else{
-            Object nuevaFila[] = {codigoProducto,nombreProducto,precioProducto,categoriaProducto,imagenProducto};
+        } else {
+            Object nuevaFila[] = {codigoProducto, nombreProducto, precioProducto, categoriaProducto, imagenProducto};
             modelo.addRow(nuevaFila);
-            
+
             campoCodigoProducto.setText("");
             campoNombreProducto.setText("");
             campoPrecioProducto.setText("");
             campoCategoriaProducto.setText("");
             campoImagenProducto.setText("");
-                    
+
         }
-           
-
-
-
-
-
-
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        DefaultTableModel modelo = ventanaPrincipal.getModeloTabla();
+        int filaSeleccionada = ventanaPrincipal.obtenerFila();
+        if (filaSeleccionada != -1) {
+            String codigoProducto = getCampoCodigoProducto();
+            String nombreProducto = getCampoNombreProducto();
+            String precioProducto = getCampoPrecioProducto();
+            String categoriaProducto = getCampoCategoriaProducto();
+            String imagenProducto = getCampoImagenProducto();
+
+            if (codigoProducto.isEmpty() || nombreProducto.isEmpty() || precioProducto.isEmpty() || categoriaProducto.isEmpty() || imagenProducto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS DEBEN DE ESTAR COMPLETOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                modelo.setValueAt(codigoProducto, filaSeleccionada, 0);
+                modelo.setValueAt(nombreProducto, filaSeleccionada, 1);
+                modelo.setValueAt(precioProducto, filaSeleccionada, 2);
+                modelo.setValueAt(categoriaProducto, filaSeleccionada, 3);
+                modelo.setValueAt(imagenProducto, filaSeleccionada, 4);
+
+                campoCodigoProducto.setText("");
+                campoNombreProducto.setText("");
+                campoPrecioProducto.setText("");
+                campoCategoriaProducto.setText("");
+                campoImagenProducto.setText("");
+            }
+        }
+    }//GEN-LAST:event_botonEditarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        DefaultTableModel modelo = ventanaPrincipal.getModeloTabla();
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTAS SEGURO DE ELIMINAR EL PRODUCTO?", "CONFIRMACION", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            int filaSeleccionada = ventanaPrincipal.obtenerFila();
+            if (filaSeleccionada != -1) {
+                modelo.removeRow(filaSeleccionada);
+                campoCodigoProducto.setText("");
+                campoNombreProducto.setText("");
+                campoPrecioProducto.setText("");
+                campoCategoriaProducto.setText("");
+                campoImagenProducto.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "CANCELADO");
+        }
+
+
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

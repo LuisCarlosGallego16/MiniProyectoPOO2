@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class VentanaInicio extends javax.swing.JFrame {
 
     private PanelUsuario panelUsuario;
-    private panelAdmin panelAdmin;
+    private PanelAdmin panelAdmin;
     private VentanaPrincipal ventanaPrincipal;
 
     public VentanaInicio() {

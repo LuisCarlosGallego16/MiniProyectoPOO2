@@ -69,7 +69,6 @@ public class PanelUsuario extends javax.swing.JPanel {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿ESTÁS SEGURO DE SALIR?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION);
-
         if (confirmacion == JOptionPane.YES_OPTION) {
             if (ventanaPrincipal != null) {
                 ventanaPrincipal.dispose();

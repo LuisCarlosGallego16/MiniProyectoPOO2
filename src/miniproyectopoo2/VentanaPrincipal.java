@@ -1,5 +1,3 @@
-
-
 package miniproyectopoo2;
 
 import java.awt.BorderLayout;
@@ -13,14 +11,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    
     private DefaultTableModel modelo;
+    private PanelAdmin panelAdmin;
 
     public VentanaPrincipal() {
         initComponents();
-        modelo= getModeloTabla();        
+        modelo = getModeloTabla();
+        panelAdmin = new PanelAdmin();
     }
-    
+
     //Metodo para obtener el modelo de la tabla
     public DefaultTableModel getModeloTabla() {
         return (DefaultTableModel) getTabla().getModel();
@@ -31,7 +30,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return jTable1;
     }
 
-    //metodo para obtener modelo y tabla.
+    //OBTENER LAS FILAS DE LA TABLA
+    public int obtenerFila() {
+        return getTabla().getSelectedRow();
+    }
+
     //METODO PARA PANEL USUARIO, PARA MANEJAR MEJOR UNA SOLA INSTANCIA EN CADA CASO.
     public void configPanelUsuario(VentanaInicio ventanaInicio) {
         PanelUsuario panelUsuario = new PanelUsuario();
@@ -42,13 +45,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     //METODO PARA PANEL ADMIN, PARA MANEJAR UNA SOLA INSTANCIA EN CADA CASO.
     public void configPanelAdmin(VentanaInicio ventanaInicio) {
-        panelAdmin panelAdmin = new panelAdmin();
         panelAdmin.setVentanaPrincipal(this);
         panelAdmin.setVentanaInicio(ventanaInicio);
         cambiarPanelContenedor2(panelAdmin);
     }
-
-  
 
     //METODO PARA CAMBIAR EL CONTENIDO DEL SEGUNDO PANEL
     public void cambiarPanelContenedor2(JPanel nuevoPanel) {
@@ -83,6 +83,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("SE ABRE ");
@@ -135,6 +140,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String codigoProducto = (String) modelo.getValueAt(filaSeleccionada, 0);
+            String nombreProducto = (String) modelo.getValueAt(filaSeleccionada, 1);
+            String precioProducto = (String) modelo.getValueAt(filaSeleccionada, 2);
+            String categoriaProducto = (String) modelo.getValueAt(filaSeleccionada, 3);
+            String imagenProducto = (String) modelo.getValueAt(filaSeleccionada, 4);
+
+            
+            panelAdmin.setCampoCodigoProducto(codigoProducto);
+            panelAdmin.setCampoNombreProducto(nombreProducto);
+            panelAdmin.setCampoPrecioProducto(precioProducto);
+            panelAdmin.setCampoCategoriaProducto(categoriaProducto);
+            panelAdmin.setCampoImagenProducto(imagenProducto);
+        }
+
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
